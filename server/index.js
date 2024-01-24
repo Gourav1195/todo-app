@@ -3,10 +3,13 @@ import bodyParser from 'body-parser' ;
 // import userRoutes from './routes/users.js';
 import mongoose from 'mongoose'
 import routes from "./routes/TaskRoute.js";
+import cors from 'cors';
 
 const app = express();
 const PORT = 5003;
 
+app.use(cors()); //its on top of use
+app.use(bodyParser.json()); //must use body parser
 app.use("/api",routes);
 
 // Connect to MongoDB

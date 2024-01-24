@@ -1,9 +1,9 @@
-import taskSchema1 from "../models/taskmodels.js";
+import TaskModel from "../models/taskmodels.js";
 
 export const getTasks = async (req, res) =>{
     //check
     // res.send("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-    const task = await TaskModel.find();
+    const tasks = await TaskModel.find();
     res.send(tasks);
 }
 
@@ -37,13 +37,11 @@ export const updateTask = (req, res) => {
 export const deleteTask = (req, res) => {
     const {id} = req.params;
 
-    TaskModel.findByIdAndDelete(id, {task})
-    .then(() => res.send("Deleted Successfully")).catch((err) => {
-        res.send({ error: err, msg: "Something went wrong!"})  
-    })
+    TaskModel.findByIdAndDelete(id)
+    .then(() => res.send("Deleted Successfully"))
     .catch((err) => {
         console.log(err);
-        res.send({error: err, msg: "something went wrong"})
-    })
-}
+        res.send({ error: err, msg: "Something went wrong!"})  
+    });
+};
 
